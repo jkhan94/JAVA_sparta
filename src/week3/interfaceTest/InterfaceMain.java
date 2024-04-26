@@ -1,6 +1,6 @@
 package week3.interfaceTest;
 
-public class Main extends D implements C {
+public class InterfaceMain extends D implements C {
 
     // 인터페이스 C의 추상메소드 구현
     @Override
@@ -19,7 +19,7 @@ public class Main extends D implements C {
     }
 
     public static void main(String[] args) {
-        Main main = new Main(); // Main클래스 내의 멤버 메소드를 쓰기 위해 변수 main이란 Main 객체 생성.
+        InterfaceMain main = new InterfaceMain(); // Main클래스 내의 멤버 메소드를 쓰기 위해 변수 main이란 Main 객체 생성.
         main.a();
         main.b();
         main.d();
