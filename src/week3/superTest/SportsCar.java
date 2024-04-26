@@ -11,6 +11,12 @@ public class SportsCar extends Car{
         this.engine = engine;
     }
 
+    public SportsCar(String model, String color, double price, String engine) {
+        // this.engine = engine; // 오류 발생
+        super(model, color, price);
+        this.engine = engine;
+    }
+
     public void booster() {
         System.out.println("엔진 " + engine + " 부앙~\n");
     }

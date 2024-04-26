@@ -29,5 +29,15 @@ public class Main {
         System.out.println("sportsCar.getModel() = " + sportsCar.getModel()); // GV80
         System.out.println("sportsCar.getColor() = " + sportsCar.getColor()); // Black
 
+
+        //super()
+        // 자식 클래스 스포츠카 객체를 생성합니다.
+        SportsCar sportsCar1 = new SportsCar("Lamborghini", "Red", 400000000, "V12");
+        sportsCar1.brakePedal();
+        sportsCar1.horn();
+        // 자식 클래스의 생성자를 통해 부모 클래스의 생성자가 호출되어 필드값이 초기화 되었는지 확인
+        System.out.println("sportsCar.getModel() = " + sportsCar1.getModel()); // Lamborghini
+        System.out.println("sportsCar.getColor() = " + sportsCar1.getColor()); // Red
+        System.out.println("sportsCar.getPrice() = " + sportsCar1.getPrice()); // 4.0E8
     }
 }

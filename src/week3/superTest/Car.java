@@ -11,8 +11,21 @@ public class Car {
     char gear = 'P'; // 기어의 상태, P,R,N,D
     boolean lights; // 자동차 조명의 상태
 
+    public Car() {
+    }
+
+    public Car(String model, String color, double price) {
+        this.model = model;
+        this.color = color;
+        this.price = price;
+    }
+
     public String getModel() {
         return model;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
     public String getColor() {
