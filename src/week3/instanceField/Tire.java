@@ -1,4 +1,4 @@
-package week3.secondCar;
+package week3.instanceField;
 
 public class Tire {
     public Tire() {

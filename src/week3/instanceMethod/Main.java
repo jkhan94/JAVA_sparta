@@ -1,4 +1,4 @@
-package week3.thirdCar;
+package week3.instanceMethod;
 
 // 출력
 //car.gear = P

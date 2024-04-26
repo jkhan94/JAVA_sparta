@@ -1,4 +1,4 @@
-package week3.thirdCar;
+package week3.instanceMethod;
 
 public class Tire {
     public Tire() {

@@ -1,4 +1,4 @@
-package week3.fourthCar;
+package week3.referenceParameter;
 
 public class Tire {
     String company; // 타이어 회사

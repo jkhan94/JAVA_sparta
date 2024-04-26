@@ -1,4 +1,4 @@
-package week3.thirdCar;
+package week3.instanceMethod;
 
 // 공개된 자동차 클래스 선언
 // public이므로 Main에서 접근 가능.
