@@ -5,6 +5,10 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        // 책 목록이 저장된 배열 리스트
+        // asList(): 배열리스트 초기화
+        // new로 생성 후 하나씩 add 하지 않고 한번에 넣어서 초기화.
+        // ID는 long 타입이니까 접미사 L을 붙임
         List<Book> bookList = Arrays.asList(
                 new Book(1L, "모두의 딥러닝", "조태호", "IT", 21600),
                 new Book(2L, "이득우의 게임 수학", "이득우", "IT", 40500),
@@ -26,28 +30,40 @@ public class Main {
         );
 
         // 카테고리가 여행인 책 제목 조회
-        bookList.stream().filter(book -> book.getCategory().equals("여행"))
+        // 리스트의 스트림화: bookList.stream()
+        // 조건절. 리스트의 요소를 book: .filter(book -> book.getCategory().equals("여행"))
+        // f는 필터링된 리스트의 요소 하나: .forEach(f -> System.out.println("카테고리가 여행인 책 제목: " + f.getBookName()));
+        bookList.stream()
+                .filter(book -> book.getCategory().equals("여행"))
                 .forEach(f -> System.out.println("카테고리가 여행인 책 제목: " + f.getBookName()));
         System.out.println();
 
         // 가격이 16200원 이하인 책 제목 조회
-        bookList.stream().filter(book -> book.getPrice() <= 16200)
+        bookList.stream()
+                .filter(book -> book.getPrice() <= 16200)
                 .forEach(f -> System.out.println("가격 16200원 이하 책 제목: " + f.getBookName()));
         System.out.println();
 
         // 책 제목에 "경제" 라는 용어가 들어간 책 제목 조회
-        bookList.stream().filter(book -> book.getBookName().contains("경제"))
+        bookList.stream()
+                .filter(book -> book.getBookName().contains("경제"))
                 .forEach(f -> System.out.println("책 제목에 '경제'가 포함된 책 제목: " + f.getBookName()));
         System.out.println();
 
         // 가격이 가장 비싼 책 가격 조회
-        double maxPrice = bookList.stream().mapToDouble(Book::getPrice)
+        // Book의 getPrice로 받아온 값을 double로 복사(map)
+        // 복사한 값 중 최대값
+        double maxPrice = bookList.stream()
+                .mapToDouble(Book::getPrice)
                 .max().getAsDouble();
         System.out.println("책 목록 중 가장 비싼 금액: " + maxPrice);
         System.out.println();
 
         // 카테고리가 IT인 책들의 가격 합 조회
-        double sum = bookList.stream().filter(book -> book.getCategory().equals("IT"))
+        // Book의 getPrice로 받아온 값을 double로 복사(map)
+        // 복사한 값 더함
+        double sum = bookList.stream()
+                .filter(book -> book.getCategory().equals("IT"))
                 .mapToDouble(Book::getPrice)
                 .sum();
         System.out.println("카테고리 IT 책들의 가격 합: " + sum);
@@ -55,13 +71,20 @@ public class Main {
 
         // IT 책 할인 이벤트!!
         // 카테고리가 IT 인 책들의 가격을 40% 할인하여 새로운 책 리스트 만들기, discountedBookList
-        List<Book> discountedBookList = bookList.stream().filter(book -> book.getCategory().equals("IT"))
-                .map(book -> {
-                    book.setPrice(book.getPrice() * 0.6);
-                    return book;
-                }).toList();
-//        List<Book> discountedBookList = bookList.stream().filter(book -> book.getCategory().equals("IT"))
-//                .peek(book -> book.setPrice(book.getPrice() * 0.6)).toList();
+        // 필터링된 책의 가격을 정가 book.getPrice()의 60%로 set해서 리턴.
+        // filteredbook으로 새 리스트 구성: .toList();
+        List<Book> discountedBookList = bookList.stream()
+                .filter(book -> book.getCategory().equals("IT"))
+                .map(filteredbook -> {
+                    filteredbook.setPrice(filteredbook.getPrice() * 0.6);
+                    return filteredbook;
+                })
+                .toList();
+/*        List<Book> discountedBookList = bookList.stream()
+                .filter(book -> book.getCategory().equals("IT"))
+                .peek(book -> book.setPrice(book.getPrice() * 0.6))
+                .toList();*/
+
         for (Book book : discountedBookList) {
             System.out.println("할인된 책 제목: " + book.getBookName());
             System.out.println("할인된 책 가격: " + book.getPrice() + "\n");
@@ -93,12 +116,15 @@ class Book {
     public String getBookName() {
         return bookName;
     }
+
     public String getCategory() {
         return category;
     }
+
     public double getPrice() {
         return price;
     }
+
     public void setPrice(double price) {
         this.price = price;
     }
