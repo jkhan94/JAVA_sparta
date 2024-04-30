@@ -7,6 +7,8 @@ public class Main {
         while (!calculateEnded) {
             try {
                 calculateEnded = CalculatorApp.start();
+                // calculateEnded = true
+                // while문 조건 !calculateEnded = false가 됨.
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
